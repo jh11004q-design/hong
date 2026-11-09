@@ -1,0 +1,5 @@
+import assert from 'node:assert/strict';import {extract,length,parse} from './engine.js';
+assert.equal(length({type:'LINE',vertices:[{x:0,y:0},{x:3000,y:4000}]}),5000);
+assert.ok(Math.abs(length({type:'LWPOLYLINE',vertices:[{x:0,y:0,bulge:1},{x:2,y:0}]})-Math.PI)<1e-9);
+const d={entities:[{type:'INSERT',name:'A',layer:'x',columnCount:2,rowCount:3},{type:'LINE',layer:'L',vertices:[{x:0,y:0},{x:1000,y:0}]},{type:'LINE',inPaperSpace:true,layer:'L',vertices:[{x:0,y:0},{x:1000,y:0}]}]};let r=extract(d,'mm');assert.equal(r.rows[0].quantity,6);assert.equal(r.rows[1].quantity,1);assert.equal(extract(d,'m').rows[1].quantity,1000);
+const fixture='0\nSECTION\n2\nHEADER\n9\n$INSUNITS\n70\n4\n0\nENDSEC\n0\nSECTION\n2\nENTITIES\n0\nLINE\n8\nPIPE\n10\n0\n20\n0\n30\n0\n11\n3000\n21\n4000\n31\n0\n0\nENDSEC\n0\nEOF\n';assert.equal(extract(parse(fixture),'mm').rows[0].quantity,5);assert.throws(()=>parse('not a DXF'));console.log('PASS: DXF parsing, units, block arrays, curved polylines, paper-space exclusion, invalid input');

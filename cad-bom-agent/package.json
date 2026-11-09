@@ -1,0 +1,15 @@
+{
+  "dependencies": {
+    "dxf-parser": "^1.1.2",
+    "esbuild": "^0.28.2",
+    "pdfjs-dist": "^6.5.438",
+    "three": "^0.187.0",
+    "xlsx": "^0.18.5"
+  },
+  "name": "cad-bom-agent",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "esbuild app.js --bundle --minify --outfile=dist/app.js && node build-assets.mjs"
+  }
+}

@@ -1,0 +1,13 @@
+node_modules/
+dist/app.js
+dist/app.js.LEGAL.txt
+dist/pdf.worker.min.mjs
+dist/cmaps/
+dist/standard_fonts/
+dist/wasm/
+dist/documents/
+.openai/
+.env
+.env.*
+!.env.example
+*.tar.gz
